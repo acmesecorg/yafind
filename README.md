@@ -14,7 +14,7 @@ The following is the types of syntax that yafind supports:
 md5(plain)
 md5(salt.plain)
 md5(md5(plain))
-md5(md5(plain)+md5(salt)))
+md5(md5(plain).md5(salt)))
 ```
 
 where `plain` and `salt` and md5 are predefined, `.` is a concatenation operator `(` and `)` is a precedance operator. The code is transformed to a syntactically correct c# statement and compiled on the fly for optimal performance.
