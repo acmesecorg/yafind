@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "yafind": {
+      "commandName": "Project",
+      "commandLineArgs": "md5(plain.salt) a1da34ed1903d1f8bc9eeb339070ae08:test:hunter2"
+    }
+  }
+}
