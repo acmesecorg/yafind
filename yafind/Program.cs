@@ -28,23 +28,23 @@ namespace yafind
 
             //Add the references to other assemblies that may be needed here, as well as any imports for the code itself
             var references = new List<string> { "System.Linq" };
-            var imports = new List<string> { "System" };
+            var imports = new List<string> { "System", "yafind" };
             var scriptOptions = ScriptOptions.Default.WithReferences(references).WithImports(imports);
 
-            //Example code to add references from internal types
-            //var assembly = Assembly.GetAssembly(typeof(MyType));
-            //scriptOptions = scriptOptions.AddReferences(assembly);
+            //Make sure script can return the Bytes type
+            var assembly = Assembly.GetAssembly(typeof(Bytes));
+            scriptOptions = scriptOptions.AddReferences(assembly);
 
             //Create a function wrapper around the source provided
             var builder = new StringBuilder();
-            builder.AppendLine("string Func1(string plain, string salt)");
+            builder.AppendLine("Bytes Func1(string plain, string salt)");
             builder.AppendLine("{");
             builder.AppendLine($"return {source};");
             builder.AppendLine("}");
             builder.AppendLine("return Func1(Plain, Salt);");
 
             //Create and compile the script
-            var script = CSharpScript.Create<string>(builder.ToString(), scriptOptions, typeof(Context));
+            var script = CSharpScript.Create<Bytes>(builder.ToString(), scriptOptions, typeof(Context));
             var compilation = script.GetCompilation();
 
             //Our context will contain the injected values, as well as our primitives as static functions
@@ -60,7 +60,11 @@ namespace yafind
                 var scriptState = await script.RunAsync(context);
 
                 //Compare return value as byte array with bytes for hash
-                Console.WriteLine($"GOT: {scriptState.ReturnValue}");
+                var returnValue = scriptState.ReturnValue.GetValue();
+                var hex = Convert.ToHexString(returnValue).ToLower();
+                var target = splits[0].ToLower();
+
+                Console.WriteLine($"Match: {hex == target}");
             }
         }
     }
