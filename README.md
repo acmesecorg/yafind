@@ -17,7 +17,7 @@ md5(md5(plain))
 md5(md5(plain).md5(salt)))
 ```
 
-where `plain` and `salt` and md5 are predefined, `.` is a concatenation operator `(` and `)` is a precedance operator. The code is transformed to a syntactically correct c# statement and compiled on the fly for optimal performance.
+where `plain` and `salt` and `md5` are predefined, `.` is a concatenation operator `(` and `)` is a precedance operator. The code is transformed to a syntactically correct c# statement and compiled on the fly for optimal performance.
 
 To achieve this, following bootsrap c# code is generated and the `Plain` and `Salt` are injected into the process:
 ```
