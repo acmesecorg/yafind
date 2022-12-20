@@ -31,7 +31,7 @@ To achieve this, following bootsrap c# code is generated and the `Plain` and `Sa
   builder.AppendLine("return Func1(Plain, Salt);");
  ```
  
-These primitives (e.g. for the md5 algorithm) are also required as support structures and functions and are injected into the global namespace of the script. They utilize the underlying equivaklent present in the .net frameowrk, or can utilize custom implementations of functions if required.
+These primitives (e.g. for the md5 algorithm) are also required as support structures and functions and are injected into the global namespace of the script. They utilize the equivalent cryptographics functions present in the .net frameowrk, or can use custom implementations if required.
  
  ```
 public static Bytes md5(string value)
