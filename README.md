@@ -1,6 +1,6 @@
 # Yet Another Find
 
-Find plains for a hash using arbitrarily defined algorithms.
+This is proof-of-concept code to show how custom cryptographic algorithms could be definied externally to a program and be used to resolve input values with expected hashes, without loss of performance by introducing a compilation step.
 
 ## Usage
 
